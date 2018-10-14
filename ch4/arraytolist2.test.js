@@ -2,18 +2,17 @@ function arrayToList(array) {
   if (array.length === 0) {
     return []
   }
-  const list = {
-    value : array[array.length - 1],
-    rest  : null
-  }
+  let list = null
 
-  for (let i = array.length - 2; i >= 0; i--) {
-    const rest = Object.assign({}, list)
-    list.value = array[i]
-    list.rest = rest
+  for (let i = array.length - 1; i >= 0; i--) {
+    list = {
+      value : array[i],
+      rest  : list
+    }
   }
   return list
 }
+
 describe('arrayToList()', () => {
   test('handles empty array', () => {
     expect(arrayToList([])).toEqual([])
