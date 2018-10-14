@@ -13,6 +13,19 @@ function arrayToList(array) {
   return list
 }
 
+function listToArray(list) {
+  if (Object.keys(list).length === 0) {
+    return []
+  }
+  const array = []
+
+  while (list.rest !== null) {
+    array.push(list.value)
+    list = list.rest
+  }
+  return array
+}
+
 describe('arrayToList()', () => {
   test('handles empty array', () => {
     expect(arrayToList([])).toEqual([])
@@ -36,5 +49,20 @@ describe('arrayToList()', () => {
         }
       }
     })
+  })
+})
+
+describe('listToArray()', () => {
+  test('handles empty list', () => {
+    expect(listToArray({})).toEqual([])
+  })
+
+  test('handles list with 1 node', () => {
+    expect(listToArray({ value: 5, rest: null })).toEqual([5])
+  })
+
+  test('handles list with multiple nodes', () => {
+    const list = arrayToList([1, 5, 10, 15])
+    expect(listToArray(list)).toEqual([1, 5, 10, 15])
   })
 })
