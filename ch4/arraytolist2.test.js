@@ -14,7 +14,7 @@ function arrayToList(array) {
 }
 
 function listToArray(list) {
-  if (!list.value) { // empty list
+  if (!list || !list.value) { // empty list
     return []
   }
 
@@ -32,6 +32,14 @@ function prepend(value, list) {
     list = null
   }
   return { value, rest: list }
+}
+
+function nth(list, n) {
+  const array = listToArray(list)
+  if (!list || !list.value || n < 0 || n >= array.length) {
+    return undefined
+  }
+  return array[n]
 }
 
 describe('arrayToList()', () => {
@@ -99,5 +107,32 @@ describe('prepend()', () => {
         rest  : null
       }
     })
+  })
+})
+
+// n = 0 means 1st element of list
+describe('nth()', () => {
+  const list = {
+    value : 10,
+    rest  : {
+      value : 20,
+      rest  : {
+        value : 30,
+        rest  : null
+      }
+    }
+  }
+
+  test('return undefined if no element at position n in list', () => {
+    expect(nth({}, 0)).toEqual(undefined)
+    expect(nth(null, 0)).toEqual(undefined)
+    expect(nth(list, -1)).toEqual(undefined)
+    expect(nth(list, 3)).toEqual(undefined)
+  })
+
+  test('returns value at position n in list', () => {
+    expect(nth(list, 0)).toEqual(10)
+    expect(nth(list, 2)).toEqual(30)
+    expect(nth(arrayToList([10, 20, 30]), 1)).toEqual(20)
   })
 })
