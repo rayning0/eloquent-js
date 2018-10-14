@@ -28,7 +28,7 @@ function listToArray(list) {
 }
 
 function prepend(value, list) {
-  if (!list.value) {
+  if (!list || !list.value) {
     list = null
   }
   return { value, rest: list }
@@ -89,6 +89,14 @@ describe('prepend()', () => {
           value : 10,
           rest  : null
         }
+      }
+    })
+
+    expect(prepend(10, prepend(20, null))).toEqual({
+      value : 10,
+      rest  : {
+        value : 20,
+        rest  : null
       }
     })
   })
