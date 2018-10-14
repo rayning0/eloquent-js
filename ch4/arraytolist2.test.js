@@ -14,15 +14,16 @@ function arrayToList(array) {
 }
 
 function listToArray(list) {
-  if (Object.keys(list).length === 0) {
+  if (!list.value) { // empty list
     return []
   }
+
   const array = []
 
-  while (list.rest !== null) {
+  do {
     array.push(list.value)
     list = list.rest
-  }
+  } while (list !== null)
   return array
 }
 
