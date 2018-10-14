@@ -1,0 +1,32 @@
+{
+    "extends": "airbnb",
+    "env": {"jest": true},
+    "rules": {
+        "semi": ["error", "never"],
+        "indent": ["error", 2, { "ignoredNodes": ["ConditionalExpression"] }],
+        "no-multi-spaces": "off",
+        "consistent-return": "off",
+        "key-spacing": ["error", { "align": {"beforeColon": true, "afterColon": true, "on": "colon"} }],
+        "no-use-before-define": ["error", { "functions": false }],
+        "no-console": "off",
+        "no-await-in-loop": "off",
+        "no-multi-assign": "off",
+        "no-param-reassign": "off",
+        "no-plusplus": "off",
+        "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+        "comma-dangle": ["error", {"objects": "ignore", "arrays": "always-multiline"}],
+        "prefer-destructuring": ["error", {"array": false}],
+        "object-curly-newline": ["error", { "multiline": true }],
+        "function-paren-newline": ["error", "consistent"],
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["bin/*"]}]
+    },
+    "overrides": [{
+      "files": ["**/__tests__/**/*.js?(x)","**/?(*.)+(spec|test).js?(x)"],
+      "rules": {
+        "no-unused-expressions": "off",
+        "no-unused-vars": "off"
+      }
+    }]
+
+}

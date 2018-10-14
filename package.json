@@ -1,0 +1,16 @@
+{
+  "name": "eloquent-js",
+  "version": "1.0.0",
+  "description": "\"Coding all 21 chapters of 'Eloquent JavaScript'\"",
+  "main": "index.js",
+  "repository": "git@github.com:rayning0/eloquent-js.git",
+  "author": "Raymond Gan <rayning@yahoo.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
