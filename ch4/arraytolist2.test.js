@@ -27,6 +27,13 @@ function listToArray(list) {
   return array
 }
 
+function prepend(value, list) {
+  if (!list.value) {
+    list = null
+  }
+  return { value, rest: list }
+}
+
 describe('arrayToList()', () => {
   test('handles empty array', () => {
     expect(arrayToList([])).toEqual([])
@@ -65,5 +72,24 @@ describe('listToArray()', () => {
   test('handles list with multiple nodes', () => {
     const list = arrayToList([1, 5, 10, 15])
     expect(listToArray(list)).toEqual([1, 5, 10, 15])
+  })
+})
+
+describe('prepend()', () => {
+  test('adds element to front of empty list', () => {
+    expect(prepend(5, {})).toEqual({ value: 5, rest: null })
+  })
+
+  test('adds value to front of list with multiple nodes', () => {
+    expect(prepend(1, { value: 5, rest: { value: 10, rest: null } })).toEqual({
+      value : 1,
+      rest  : {
+        value : 5,
+        rest  : {
+          value : 10,
+          rest  : null
+        }
+      }
+    })
   })
 })
