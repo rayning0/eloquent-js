@@ -34,12 +34,24 @@ function prepend(value, list) {
   return { value, rest: list }
 }
 
-function nth(list, n) {
+// non-recursive solution
+function nthFaster(list, n) {
   const array = listToArray(list)
   if (!list || !list.value || n < 0 || n >= array.length) {
     return undefined
   }
   return array[n]
+}
+
+// recursive solution
+function nthSlower(list, n) {
+  if (!list) {
+    return undefined
+  }
+  if (n === 0) {
+    return list.value
+  }
+  return nthSlower(list.rest, n - 1)
 }
 
 describe('arrayToList()', () => {
@@ -124,15 +136,42 @@ describe('nth()', () => {
   }
 
   test('return undefined if no element at position n in list', () => {
-    expect(nth({}, 0)).toEqual(undefined)
-    expect(nth(null, 0)).toEqual(undefined)
-    expect(nth(list, -1)).toEqual(undefined)
-    expect(nth(list, 3)).toEqual(undefined)
+    expect(nthSlower({}, 0)).toEqual(undefined)
+    expect(nthSlower(null, 0)).toEqual(undefined)
+    expect(nthSlower(list, -1)).toEqual(undefined)
+    expect(nthSlower(list, 3)).toEqual(undefined)
+
+    expect(nthFaster({}, 0)).toEqual(undefined)
+    expect(nthFaster(null, 0)).toEqual(undefined)
+    expect(nthFaster(list, -1)).toEqual(undefined)
+    expect(nthFaster(list, 3)).toEqual(undefined)
   })
 
   test('returns value at position n in list', () => {
-    expect(nth(list, 0)).toEqual(10)
-    expect(nth(list, 2)).toEqual(30)
-    expect(nth(arrayToList([10, 20, 30]), 1)).toEqual(20)
+    expect(nthSlower(list, 0)).toEqual(10)
+    expect(nthSlower(list, 2)).toEqual(30)
+
+    expect(nthFaster(list, 0)).toEqual(10)
+    expect(nthFaster(list, 2)).toEqual(30)
+  })
+
+  test('Compare speed of nthSlower() and nthFaster() over many repetitions', () => {
+    const array = []
+    for (let i = 1; i <= 10000; i++) {
+      array.push(i)
+    }
+    const longList = arrayToList(array)
+
+    let start = Date.now()
+    for (let i = 0; i < 10000; i++) {
+      expect(nthSlower(longList, 9999)).toEqual(10000)
+    }
+    console.log(`nthSlower() took ${Date.now() - start} ms`)
+
+    start = Date.now()
+    for (let i = 0; i < 10000; i++) {
+      expect(nthFaster(longList, 9999)).toEqual(10000)
+    }
+    console.log(`nthFaster() took ${Date.now() - start} ms`)
   })
 })
