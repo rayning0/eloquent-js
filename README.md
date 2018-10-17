@@ -6,6 +6,7 @@
 4. [How to create and run Jest tests](https://linkedin-jr-engineers.slack.com/archives/CDD6ZFLTS/p1539558702000200). How to install Yarn and Jest. Also follow this [Jest setup](https://jestjs.io/docs/en/getting-started).
 5. Installing ESLint: [Part 1](https://linkedin-jr-engineers.slack.com/archives/CDD6ZFLTS/p1539558793000100). [Part 2](https://linkedin-jr-engineers.slack.com/archives/CDD6ZFLTS/p1539558809000100).
 6. [Using the interactive Node terminal (REPL) to develop algorithms](https://linkedin-jr-engineers.slack.com/archives/CDD6ZFLTS/p1539558934000100).
+7. The best code editor I've ever used is [VS Code](https://code.visualstudio.com/download). I prefer you use it to code. [Set it up with Node](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial). My `launch.json` file and all my advice teaches you to use VS Code most effectively. [How to debug in Node](https://code.visualstudio.com/docs/editor/debugging). [How to set breakpoints in VS Code and stop your Jest tests on certain lines](https://linkedin-jr-engineers.slack.com/archives/CDD6ZFLTS/p1539735832000100).
 
 This is how you should write code professionally, with Test-Driven Development (with a test framework like Jest), linting (with ESLint), and playing in an interactive terminal (REPL) to figure out the right algorithm. If you can do all this consistently, you're more likely to be hired as a software engineer.
 
